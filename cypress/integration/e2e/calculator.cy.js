@@ -81,7 +81,7 @@ describe("Calculator", () => {
     cy.get('.display').should('contain', '947232')
   })
 
-  it("What does the code do in exceptional circumstances? Specifically, if you divide by zero, what is the effect? Write a test to describe what you'd prefer to happen, and then correct the code to make that test pass (you will need to modify the Calculator model to meet this requirement)", () => {
+  it("it should show an error when divide by zero, i would prefer when divide by zero the output would be 0", () => {
     cy.get('#number2').click();
     cy.get('#operator-divide').click();
     cy.get('#number0').click();
