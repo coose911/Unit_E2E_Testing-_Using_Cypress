@@ -19,6 +19,7 @@ describe('Calculator', () => {
     const button7 = container.getByTestId('number7');
     const button8 = container.getByTestId('number8');
     const button9 = container.getByTestId('number9');
+    const buttonDecimal = container.getByTestId('decimal');
     fireEvent.click(add)
     fireEvent.click(subtract)
     fireEvent.click(multiply)
@@ -107,6 +108,7 @@ it('clear the running total without affecting the calculation', () => {
   const runningTotal = container.getByTestId('running-total');
   expect(runningTotal.textContent).toEqual('7');
 })
+
 
 })
 
