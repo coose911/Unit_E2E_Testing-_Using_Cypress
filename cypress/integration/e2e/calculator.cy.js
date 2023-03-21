@@ -22,7 +22,7 @@ describe("Calculator", () => {
 
   it('Do the arithmetical operations update the display with the result of the operation', () => {
     cy.get('#number2').click();
-    cy.get('#operator_add').click();
+    cy.get('#operator-add').click();
     cy.get('#number2').click();
     cy.get('#operator-equals').click();
     cy.get('.display').should('contain', '4')
@@ -30,7 +30,7 @@ describe("Calculator", () => {
 
   it('Can multiple operations be chained together', () => {
     cy.get('#number2').click();
-    cy.get('#operator_add').click();
+    cy.get('#operator-add').click();
     cy.get('#number2').click();
     cy.get('#operator-subtract').click();
     cy.get('#number1').click();
@@ -81,12 +81,12 @@ describe("Calculator", () => {
     cy.get('.display').should('contain', '947232')
   })
 
-  it("it should show an error when divide by zero, i would prefer when divide by zero the output would be 0", () => {
-    cy.get('#number2').click();
-    cy.get('#operator-divide').click();
-    cy.get('#number0').click();
-    cy.get('#operator-equals').click();
-    cy.get('.display').should('contain', '0')
+  it('should not be able to divide by zero', () => {
+    cy.get('#number5').click()
+    cy.get('#operator-divide').click()
+    cy.get('#number0').click()
+    cy.get('#operator-equals').click()
+    cy.get('.display').should('contain', 'error')
   })
   
   
