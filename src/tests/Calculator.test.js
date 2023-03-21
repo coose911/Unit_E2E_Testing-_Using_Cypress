@@ -5,25 +5,47 @@ import {render, fireEvent} from '@testing-library/react';
 
 describe('Calculator', () => {
   let container;
+  let button0;
+  let button1;
+  let button2;
+  let button3;
+  let button4;
+  let button5;
+  let button6;
+  let button7;
+  let button8;
+  let button9;
+  let buttonDecimal;
+  let add;
+  let subtract;
+  let multiply;
+  let divide;
+  let equals;
+  let clear;
+  let runningTotal;
 
 
   beforeEach(() => {
     container = render(<Calculator/>)
-    const button0 = container.getByTestId('number0');
-    const button1 = container.getByTestId('number1');
-    const button2 = container.getByTestId('number2');
-    const button3 = container.getByTestId('number3');
-    const button4 = container.getByTestId('number4');
-    const button5 = container.getByTestId('number5');
-    const button6 = container.getByTestId('number6');
-    const button7 = container.getByTestId('number7');
-    const button8 = container.getByTestId('number8');
-    const button9 = container.getByTestId('number9');
-    const buttonDecimal = container.getByTestId('decimal');
-    fireEvent.click(add)
-    fireEvent.click(subtract)
-    fireEvent.click(multiply)
-    fireEvent.click(equals)
+    button0 = container.getByTestId('number0');
+    button1 = container.getByTestId('number1');
+    button2 = container.getByTestId('number2');
+    button3 = container.getByTestId('number3');
+    button4 = container.getByTestId('number4');
+    button5 = container.getByTestId('number5');
+    button6 = container.getByTestId('number6');
+    button7 = container.getByTestId('number7');
+    button8 = container.getByTestId('number8');
+    button9 = container.getByTestId('number9');
+    buttonDecimal = container.getByTestId('decimal');
+    add = container.getByTestId('operator-add');
+    subtract = container.getByTestId('operator-subtract');
+    multiply = container.getByTestId('operator-multiply');
+    divide = container.getByTestId('operator-divide');
+    equals = container.getByTestId('operator-equals');
+    clear = container.getByTestId('clear');
+    runningTotal = container.getByTestId('running-total');
+
 
   })
 
@@ -94,19 +116,17 @@ it('chain multiple operations together', () => {
   expect(runningTotal.textContent).toEqual('2');
 })
 
-it('clear the running total without affecting the calculation', () => {
-  fireEvent.click(button9)  
-  fireEvent.click(add)  
-  fireEvent.click(button6)  
-  fireEvent.click(subtract)  
-  fireEvent.click(button1)  
-  fireEvent.click(divide)  
-  fireEvent.click(button5) 
-  fireEvent.click(clear)
+it('should clear the running total without affecting the calculation', () => {
   fireEvent.click(button2)
+  fireEvent.click(button1)
+  fireEvent.click(divide)
+  fireEvent.click(button3)
+  fireEvent.click(subtract)
+  fireEvent.click(button2)
+  fireEvent.click(clear)
+  fireEvent.click(button7)
   fireEvent.click(equals)
-  const runningTotal = container.getByTestId('running-total');
-  expect(runningTotal.textContent).toEqual('7');
+  expect(runningTotal.textContent).toEqual('0')
 })
 
 
